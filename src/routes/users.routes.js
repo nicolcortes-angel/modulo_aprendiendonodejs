@@ -4,7 +4,7 @@ import { postUser, getAllUsers, putUserById, deleteUserById } from "../controlle
 
 
 //2. Configurar las rutas 
-const userRouter = express.Router();
+export const userRouter = express.Router();
 
 //3. Ruta para el POST 
 userRouter.post("/", postUser);
@@ -17,3 +17,4 @@ userRouter.put("/:id", putUserById);
 
 //3. Ruta para el DELETE
 userRouter.delete("/:id", deleteUserById);
+

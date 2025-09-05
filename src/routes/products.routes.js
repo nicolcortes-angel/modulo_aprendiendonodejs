@@ -4,7 +4,7 @@ import { postProduct, getProducts, putProduct, deleteProductById } from "../cont
 
 
 //2. Configurar las rutas 
-const productRouter = express.Router();
+export const productRouter = express.Router();
 
 //3. Ruta para el POST 
 productRouter.post("/crear", postProduct);
@@ -17,3 +17,5 @@ productRouter.put("/actualizar/:id", putProduct);
 
 //3. Ruta para el DELETE
 productRouter.delete("/eliminar/:id", deleteProductById);
+
+

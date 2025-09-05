@@ -6,8 +6,10 @@
 import express from "express";
 import dotenv from "dotenv";
 import { conexionMongo } from "./src/config/db.js";
-import {productRouter} from "./src/routes/productos.routes.js";
-import {userRouter} from "./src/routes/users.routes.js";
+import { productRouter } from "./src/routes/products.routes.js";
+import { userRouter } from "./src/routes/users.routes.js";
+
+
 
 
 // 2. Configurar las dependencias que necesitamos
@@ -19,13 +21,13 @@ conexionMongo(); //conexion con dv
 
 
 // 3. Funcionalidades que necesite agregar 
-app.get("/",(req,res)=>{
-  res.send(`server works!`)
+app.get("/",(request,response)=>{
+  response.send(`server works!`)
 });
 
 app.use(express.json());
 app.use("/products", productRouter);
-app.use("/users", userRouter, )
+app.use("/users", userRouter);
 
 
 // 4. levantar el servidor  
