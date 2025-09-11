@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 import { conexionMongo } from "./src/config/db.js";
 import { productRouter } from "./src/routes/products.routes.js";
 import { userRouter } from "./src/routes/users.routes.js";
+import cors from "cors";
 
 
 
@@ -25,6 +26,7 @@ app.get("/",(request,response)=>{
   response.send(`server works!`)
 });
 
+app.use(cors()); //habilitacion cors 
 app.use(express.json());
 app.use("/products", productRouter);
 app.use("/users", userRouter);
