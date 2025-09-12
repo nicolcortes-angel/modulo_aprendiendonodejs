@@ -6,7 +6,20 @@ import { productModel } from "../models/products.model.js";
 // 1. METODO PARA CREAR UN PRODUCTO = POST 
 export const postProduct = async (request, response) => {
 try {
-        await productModel.create(request.body);
+
+    if (!request.file) {
+        return response.status(400).json ({
+            "mensaje": "debe subir un archivo imagen"
+        }); 
+    }
+
+const newProduct = { 
+    ...request.body,
+    image: `/uploads/${request.file.filename}`
+}
+
+
+        await productModel.create(newProduct);
 
         return response.status(201).json({
             "mensaje": "Producto creado correctamente"

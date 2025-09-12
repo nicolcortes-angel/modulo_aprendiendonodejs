@@ -9,6 +9,9 @@ import { conexionMongo } from "./src/config/db.js";
 import { productRouter } from "./src/routes/products.routes.js";
 import { userRouter } from "./src/routes/users.routes.js";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
+
 
 
 
@@ -18,6 +21,8 @@ const app = express();
 dotenv.config();
 const port = process.env.PORT;
 conexionMongo(); //conexion con dv
+const _filename = fileURLToPath(import.meta.url);
+const _dirname = path.dirname(_filename);
 
 
 
@@ -30,7 +35,7 @@ app.use(cors()); //habilitacion cors
 app.use(express.json());
 app.use("/products", productRouter);
 app.use("/users", userRouter);
-
+app.use("/uploads", express.static(path.join(_dirname, "src/uploads")));
 
 // 4. levantar el servidor  
 app.listen(port, ()=>{
