@@ -1,6 +1,7 @@
 //1. importacion de dependecias y modulos 
 import express from "express"; 
 import { postUser, getAllUsers, putUserById, deleteUserById } from "../controllers/users.controller.js";
+import { auth } from "../middleware/auth.js";
 
 
 //2. Configurar las rutas 
@@ -10,7 +11,7 @@ export const userRouter = express.Router();
 userRouter.post("/", postUser);
 
 //3. Ruta para el GET
-userRouter.get("/", getAllUsers);
+userRouter.get("/", auth("admin"), getAllUsers);
 
 //3. Ruta para el PUT
 userRouter.put("/:id", putUserById);
